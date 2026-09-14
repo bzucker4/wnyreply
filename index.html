@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WNYReply | Never lose another lead to a slow reply</title>
+<meta name="description" content="AI-powered instant text replies for Western New York trades businesses. Free to try this season.">
+<meta name="theme-color" content="#081420">
+<meta property="og:title" content="WNYReply | Instant lead response for WNY trades">
+<meta property="og:description" content="Reply to new customer texts in under a minute, qualify the job, and send the next step automatically.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0F2436;
+    --navy-deep: #081420;
+    --navy-soft: #17324A;
+    --ice: #3E7CB1;
+    --ice-light: #B9D4E8;
+    --ice-pale: #EAF2F8;
+    --amber: #E8935A;
+    --amber-dark: #D67A3E;
+    --white: #FFFFFF;
+    --ink-soft: #4A5C6B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--navy);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: 'Poppins'; font-weight: 700; font-size: 20px; color: var(--navy); text-decoration: none; }
+  .brand svg { width: 32px; height: 32px; flex-shrink: 0; }
+  .nav-cta {
+    background: var(--navy); color: var(--white); font-weight: 600; font-size: 14.5px;
+    padding: 10px 20px; border-radius: 8px; text-decoration: none;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--navy-deep);
+    color: var(--white);
+    padding: 30px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .facet-bg {
+    position: absolute; inset: 0; z-index: 0; opacity: 0.55;
+  }
+  .hero-inner { position: relative; z-index: 1; }
+
+  .hero-top { padding: 56px 0 44px; }
+  .hero-kicker {
+    font-family: 'IBM Plex Mono'; font-size: 13px; color: var(--ice-light);
+    letter-spacing: 0.02em; margin-bottom: 22px; display: flex; align-items: center; gap: 10px;
+  }
+  .hero-kicker .pulse {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--amber);
+    box-shadow: 0 0 0 0 rgba(232,147,90,0.7); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(232,147,90,0.55); }
+    70% { box-shadow: 0 0 0 9px rgba(232,147,90,0); }
+    100% { box-shadow: 0 0 0 0 rgba(232,147,90,0); }
+  }
+
+  .hero-headline {
+    font-size: 68px; font-weight: 800; line-height: 1.03; letter-spacing: -0.02em;
+    max-width: 780px;
+  }
+  .hero-headline .light { font-weight: 500; color: var(--ice-light); }
+
+  .hero-bottom {
+    display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
+    padding-bottom: 0;
+  }
+  .hero-sub { font-size: 18px; color: var(--ice-light); max-width: 440px; margin: 26px 0 30px; line-height: 1.6; }
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn-primary {
+    background: var(--amber); color: var(--navy-deep); font-weight: 700; font-size: 16px;
+    padding: 15px 28px; border-radius: 9px; text-decoration: none; display: inline-block;
+    box-shadow: 0 8px 26px rgba(232,147,90,0.3);
+  }
+  .btn-secondary {
+    border: 1.5px solid rgba(255,255,255,0.28); color: var(--white); font-weight: 600; font-size: 16px;
+    padding: 14px 26px; border-radius: 9px; text-decoration: none; display: inline-block;
+  }
+
+  /* Big numeral stat - the one bold visual anchor */
+  .stat-block { text-align: right; padding-bottom: 44px; }
+  .stat-num { font-family: 'Poppins'; font-weight: 900; font-size: 108px; line-height: 0.85; color: var(--amber); letter-spacing: -0.03em; }
+  .stat-label { font-family: 'IBM Plex Mono'; font-size: 13.5px; color: var(--ice-light); margin-top: 8px; max-width: 190px; margin-left: auto; }
+
+  /* ---------- PHONE STRIP ---------- */
+  .phone-strip {
+    background: var(--navy-soft); border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 0;
+  }
+  .phone-strip-inner { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .phone-strip-inner::-webkit-scrollbar { display: none; }
+  .phone-frame {
+    flex-shrink: 0; width: 340px; padding: 34px 30px; border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .phone-frame:first-child { padding-left: 28px; }
+  .phone-screen-mini {
+    background: #E9EDF1; border-radius: 16px; overflow: hidden; box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+  }
+  .phone-bar-mini {
+    background: var(--white); padding: 11px 14px 9px; display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid #E1E6EA; font-family: 'Inter'; font-weight: 600; font-size: 12.5px;
+  }
+  .phone-bar-mini .dot { width: 22px; height: 22px; border-radius: 50%; background: var(--ice); flex-shrink: 0; }
+  .phone-msgs-mini { padding: 13px 10px; display: flex; flex-direction: column; gap: 8px; min-height: 210px; }
+  .msg-mini {
+    font-family: 'Inter'; font-size: 12px; line-height: 1.4; padding: 8px 11px;
+    border-radius: 14px; max-width: 82%; opacity: 0; animation: rise 0.5s ease forwards;
+  }
+  .msg-mini.in  { background: var(--white); color: var(--navy); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg-mini.out { background: var(--ice); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .phone-frame .msg-mini:nth-child(1) { animation-delay: 0.2s; }
+  .phone-frame .msg-mini:nth-child(2) { animation-delay: 0.9s; }
+  .phone-frame .msg-mini:nth-child(3) { animation-delay: 1.7s; }
+  .phone-frame .msg-mini:nth-child(4) { animation-delay: 2.5s; }
+  .phone-frame .msg-mini:nth-child(5) { animation-delay: 3.3s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .msg-mini { opacity: 1; animation: none; } }
+
+  .phone-frame-label {
+    font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--ice-light); margin-top: 14px;
+  }
+
+  /* ---------- PROBLEM STRIP ---------- */
+  .strip { background: var(--ice-pale); padding: 50px 0; }
+  .strip .wrap { max-width: 760px; text-align: center; }
+  .strip p { font-size: 20px; color: var(--navy); font-weight: 500; line-height: 1.5; }
+  .strip strong { color: var(--ice); font-weight: 700; }
+
+  /* ---------- HOW IT WORKS (thread timeline) ---------- */
+  .section { padding: 96px 0; }
+  .section-head { max-width: 580px; margin-bottom: 56px; }
+  .section-head h2 { font-size: 34px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.01em; }
+  .section-head p { color: var(--ink-soft); font-size: 16.5px; }
+
+  .thread { position: relative; padding-left: 4px; }
+  .thread::before {
+    content: ""; position: absolute; left: 27px; top: 14px; bottom: 14px; width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--ice-light) 0 6px, transparent 6px 12px);
+  }
+  .thread-step { display: grid; grid-template-columns: 56px 1fr; gap: 24px; margin-bottom: 40px; position: relative; }
+  .thread-step:last-child { margin-bottom: 0; }
+  .thread-time {
+    width: 56px; height: 56px; border-radius: 50%; background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center; font-family: 'IBM Plex Mono';
+    font-weight: 600; font-size: 13px; flex-shrink: 0; z-index: 1;
+  }
+  .thread-step h3 { font-size: 19px; font-weight: 600; margin-bottom: 8px; padding-top: 12px; }
+  .thread-step p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; max-width: 480px; }
+
+  /* ---------- FOUNDING OFFER — punch card ---------- */
+  .offer-wrap { padding: 0 0 96px; }
+  .offer {
+    background: var(--navy-deep); color: var(--white); border-radius: 22px; padding: 0;
+    display: grid; grid-template-columns: 1.3fr 1fr; overflow: hidden;
+    position: relative;
+  }
+  .offer-left { padding: 52px 48px; }
+  .offer-left h2 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+  .offer-left p { color: var(--ice-light); font-size: 15.5px; line-height: 1.65; max-width: 420px; }
+  .offer-right {
+    background: var(--amber); color: var(--navy-deep); padding: 52px 40px;
+    display: flex; flex-direction: column; justify-content: center; position: relative;
+  }
+  .offer-right::before {
+    content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--navy-deep) 0 8px, transparent 8px 16px);
+    opacity: 0.25;
+  }
+  .ticket-label { font-family: 'IBM Plex Mono'; font-size: 12.5px; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .ticket-price { font-family: 'Poppins'; font-size: 68px; font-weight: 900; line-height: 1; }
+  .ticket-sub { font-family: 'Inter'; font-size: 14px; font-weight: 600; margin-bottom: 22px; opacity: 0.85; }
+  .offer-right ul { list-style: none; }
+  .offer-right li { font-size: 14.5px; font-weight: 500; padding: 6px 0; display: flex; gap: 9px; }
+  .offer-right li::before { content: "✓"; font-weight: 800; }
+
+  .offer-action { margin-top: 28px; }
+  .offer-action a { background: var(--navy-deep); color: var(--white); padding: 13px 20px; border-radius: 8px; text-decoration: none; display: inline-block; font-weight: 700; }
+
+  /* ---------- FOUNDING MEMBER FORM ---------- */
+  .apply-section { background: var(--ice-pale); padding: 92px 0; }
+  .apply-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 64px; align-items: start; }
+  .apply-copy h2 { font-size: 34px; line-height: 1.15; margin-bottom: 16px; }
+  .apply-copy p { color: var(--ink-soft); line-height: 1.7; }
+  .apply-notes { margin-top: 26px; display: grid; gap: 12px; }
+  .apply-note { display: flex; gap: 10px; color: var(--navy); font-size: 14px; font-weight: 600; }
+  .apply-note::before { content: "✓"; color: var(--ice); font-weight: 900; }
+  .lead-form { background: var(--white); border-radius: 18px; padding: 34px; box-shadow: 0 18px 50px rgba(15,36,54,.1); }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 7px; }
+  .field input, .field select, .field textarea { width: 100%; border: 1px solid #C9D4DD; border-radius: 8px; padding: 12px 13px; color: var(--navy); background: var(--white); }
+  .field textarea { min-height: 100px; resize: vertical; }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--ice); outline: 3px solid rgba(62,124,177,.16); }
+  .form-submit { width: 100%; border: 0; border-radius: 9px; padding: 15px 20px; background: var(--amber); color: var(--navy-deep); font-weight: 800; cursor: pointer; }
+  .form-submit:hover { background: var(--amber-dark); }
+  .form-fine { margin-top: 12px; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+  .form-fine a { color: var(--ice); }
+
+  /* ---------- DEMO CTA ---------- */
+  .demo-cta { text-align: center; padding: 10px 0 100px; }
+  .demo-cta h2 { font-size: 32px; font-weight: 700; margin-bottom: 14px; max-width: 560px; margin-inline: auto; letter-spacing: -0.01em; }
+  .demo-cta p { color: var(--ink-soft); margin-bottom: 32px; font-size: 16px; }
+  .demo-number {
+    display: inline-flex; align-items: center; gap: 14px; background: var(--navy);
+    border-radius: 14px; padding: 18px 30px 18px 24px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 23px; font-weight: 600; color: var(--white);
+    text-decoration: none;
+  }
+  .demo-number .icon {
+    width: 40px; height: 40px; border-radius: 10px; background: var(--amber); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .demo-number span.tag { font-family: 'Inter'; font-size: 12.5px; font-weight: 600; color: var(--ice-light); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
+
+  /* ---------- FOOTER ---------- */
+  footer { background: var(--navy-deep); color: rgba(255,255,255,0.5); padding: 36px 0; font-size: 13.5px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  footer a { text-decoration: none; color: rgba(255,255,255,0.5); margin-left: 20px; }
+  footer a:hover { color: var(--white); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px) {
+    .hero-headline { font-size: 40px; }
+    .hero-bottom { grid-template-columns: 1fr; }
+    .stat-block { text-align: left; padding-bottom: 0; margin-top: 30px; }
+    .stat-label { margin-left: 0; }
+    .offer { grid-template-columns: 1fr; }
+    .apply-grid { grid-template-columns: 1fr; gap: 36px; }
+    .offer-right::before { display: none; }
+    footer .wrap { flex-direction: column; text-align: center; }
+    footer a { margin: 0 8px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding-left: 20px; padding-right: 20px; }
+    .hero-headline { font-size: 36px; }
+    .hero-top { padding-top: 38px; }
+    .hero-ctas a { width: 100%; text-align: center; }
+    .stat-num { font-size: 82px; }
+    .offer-left, .offer-right, .lead-form { padding: 30px 24px; }
+    .field-grid { grid-template-columns: 1fr; gap: 0; }
+    .demo-number { width: 100%; justify-content: center; font-size: 19px; padding-inline: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a href="#" class="brand">
+      <svg viewBox="0 0 100 100" fill="none">
+        <rect x="14" y="20" width="72" height="52" rx="16" fill="#3E7CB1"/>
+        <path d="M22 68 L34 68 L20 86 Z" fill="#3E7CB1"/>
+        <path d="M53 30 L34 58 L48 58 L44 78 L64 48 L50 48 Z" fill="white"/>
+      </svg>
+      WNYReply
+    </a>
+    <a href="#apply" class="nav-cta">Claim a founding spot</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <svg class="facet-bg" viewBox="0 0 1160 520" preserveAspectRatio="xMaxYMin slice" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="820,0 1160,0 1160,180 960,120" fill="#132C42"/>
+    <polygon points="960,120 1160,180 1160,340 1020,260" fill="#17324A"/>
+    <polygon points="820,0 960,120 780,140 700,40" fill="#0F2436"/>
+    <polygon points="1020,260 1160,340 1160,520 980,420" fill="#132C42"/>
+    <polygon points="700,40 780,140 620,180 560,60" fill="#17324A"/>
+    <polygon points="980,420 1160,520 900,520 860,440" fill="#0F2436"/>
+    <polygon points="620,180 780,140 800,280 660,300" fill="#0F2436"/>
+    <polygon points="660,300 800,280 860,440 720,440" fill="#132C42"/>
+    <line x1="820" y1="0" x2="960" y2="120" stroke="#3E7CB1" stroke-width="1" opacity="0.3"/>
+    <line x1="960" y1="120" x2="1020" y2="260" stroke="#3E7CB1" stroke-width="1" opacity="0.3"/>
+    <line x1="780" y1="140" x2="620" y2="180" stroke="#3E7CB1" stroke-width="1" opacity="0.3"/>
+    <line x1="800" y1="280" x2="860" y2="440" stroke="#3E7CB1" stroke-width="1" opacity="0.3"/>
+  </svg>
+
+  <div class="wrap hero-inner">
+    <div class="hero-top">
+      <div class="hero-kicker"><span class="pulse"></span>LIVE: currently texting back real customers in WNY</div>
+      <h1 class="hero-headline">Your customers text.<br><span class="light">You reply before</span><br>they try the next guy.</h1>
+    </div>
+
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-sub">An AI assistant that answers new customer texts instantly, gives a real price estimate, and sends a booking link 24/7, even during a storm.</p>
+        <div class="hero-ctas">
+          <a href="sms:+15855029426?body=QUOTE" class="btn-primary">Text "QUOTE" to try it now</a>
+          <a href="#how" class="btn-secondary">See how it works</a>
+        </div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">60</div>
+        <div class="stat-label">seconds or less, that's the whole reply time</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="phone-strip">
+  <div class="phone-strip-inner">
+    <div class="phone-frame">
+      <div class="phone-screen-mini">
+        <div class="phone-bar-mini"><div class="dot"></div> WNY Snow &amp; Ice</div>
+        <div class="phone-msgs-mini">
+          <div class="msg-mini in">Thanks for reaching out! Is this for a residential driveway or a commercial lot?</div>
+          <div class="msg-mini out">Residential driveway</div>
+          <div class="msg-mini in">Got it. Seasonal contract or pay-per-visit?</div>
+          <div class="msg-mini out">Seasonal please</div>
+          <div class="msg-mini in">Most seasonal driveway contracts run $450 to $750 for the winter. Want to lock in your spot? [booking link]</div>
+        </div>
+      </div>
+      <div class="phone-frame-label">A real quote, start to finish</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-screen-mini">
+        <div class="phone-bar-mini"><div class="dot"></div> WNY Snow &amp; Ice</div>
+        <div class="phone-msgs-mini">
+          <div class="msg-mini out">I manage a 500-space commercial garage, need a formal bid with insurance certs</div>
+          <div class="msg-mini in">Let me get our team to follow up with you directly. Someone will reach out shortly!</div>
+          <div class="msg-mini in" style="background:#F3D9C4;color:#7A4A1F;border-radius:10px;font-weight:600;">🚨 Alert sent to owner's phone</div>
+        </div>
+      </div>
+      <div class="phone-frame-label">Anything unusual goes straight to you</div>
+    </div>
+    <div class="phone-frame">
+      <div class="phone-screen-mini">
+        <div class="phone-bar-mini"><div class="dot"></div> WNY Snow &amp; Ice</div>
+        <div class="phone-msgs-mini">
+          <div class="msg-mini out">Hey, I'm in Cleveland, Ohio. Do you plow driveways out here?</div>
+          <div class="msg-mini in">Thanks for reaching out! Unfortunately we don't currently service that area.</div>
+        </div>
+      </div>
+      <div class="phone-frame-label">Knows its own service area</div>
+    </div>
+  </div>
+</div>
+
+<div class="strip">
+  <div class="wrap">
+    <p>Most service businesses take <strong>hours</strong> to reply to a new lead. The first company to text back is usually the one that gets the job.</p>
+  </div>
+</div>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it actually works</h2>
+      <p>No dashboards, no new number to check. It runs quietly on the number you already give customers.</p>
+    </div>
+    <div class="thread">
+      <div class="thread-step">
+        <div class="thread-time">0:00</div>
+        <div>
+          <h3>A customer texts you</h3>
+          <p>Someone sees your flyer, your Facebook page, or hears about you and texts your number asking for a quote.</p>
+        </div>
+      </div>
+      <div class="thread-step">
+        <div class="thread-time">0:04</div>
+        <div>
+          <h3>They get a real answer</h3>
+          <p>A couple of quick questions, then an honest price range and a link to book, all within a minute, any time of day.</p>
+        </div>
+      </div>
+      <div class="thread-step">
+        <div class="thread-time">∞</div>
+        <div>
+          <h3>You handle the rest</h3>
+          <p>Anything unusual, such as a big commercial job, complaint, or negotiation, gets flagged straight to your phone so you can jump in personally.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap offer-wrap">
+  <div class="offer">
+    <div class="offer-left">
+      <h2>Only 2-3 founding spots this season</h2>
+      <p>I'm working with the first 2-3 Western New York trades businesses to prove this out before opening it up more broadly. Founding spots include the full setup at no cost in exchange for your honest feedback as we get this right together.</p>
+    </div>
+    <div class="offer-right">
+      <div class="ticket-label">FOUNDING MEMBER PASS</div>
+      <div class="ticket-price">3</div>
+      <div class="ticket-sub">spots available this season</div>
+      <ul>
+        <li>No cost for founding businesses</li>
+        <li>Works on your existing number</li>
+        <li>Cancel anytime, no contract</li>
+        <li>Direct text alerts, not a call center</li>
+      </ul>
+      <div class="offer-action"><a href="#apply">Apply for a spot</a></div>
+    </div>
+  </div>
+</div>
+
+<section class="apply-section" id="apply">
+  <div class="wrap apply-grid">
+    <div class="apply-copy">
+      <h2>Let’s see if WNYReply fits your business</h2>
+      <p>Tell us how customers contact you and what a good lead looks like. We’ll review your setup and respond personally with the next step.</p>
+      <div class="apply-notes">
+        <div class="apply-note">Built for owner-operated trades and service businesses</div>
+        <div class="apply-note">Your pricing, service area, and escalation rules</div>
+        <div class="apply-note">No contract and no obligation</div>
+      </div>
+    </div>
+    <form class="lead-form" name="founding-member-application" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company-website">
+      <input type="hidden" name="form-name" value="founding-member-application">
+      <p hidden><label>Do not fill this out: <input name="company-website"></label></p>
+      <div class="field-grid">
+        <div class="field"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="business">Business name</label><input id="business" name="business" type="text" autocomplete="organization" required></div>
+      </div>
+      <div class="field-grid">
+        <div class="field"><label for="phone">Mobile number</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="field-grid">
+        <div class="field"><label for="trade">Type of business</label><select id="trade" name="trade" required><option value="">Choose one</option><option>Snow removal</option><option>Landscaping</option><option>HVAC</option><option>Plumbing</option><option>Electrical</option><option>Roofing</option><option>Cleaning</option><option>Other service trade</option></select></div>
+        <div class="field"><label for="location">Primary service area</label><input id="location" name="service-area" type="text" placeholder="Example: Monroe County" required></div>
+      </div>
+      <div class="field"><label for="lead-volume">About how many new inquiries do you receive each month?</label><select id="lead-volume" name="monthly-inquiries" required><option value="">Choose one</option><option>Fewer than 10</option><option>10–25</option><option>26–50</option><option>More than 50</option><option>Not sure</option></select></div>
+      <div class="field"><label for="challenge">What usually slows down your replies?</label><textarea id="challenge" name="reply-challenge" placeholder="After-hours texts, time on job sites, repetitive quote questions..."></textarea></div>
+      <button class="form-submit" type="submit">Request a founding spot</button>
+      <p class="form-fine">By submitting, you agree that WNYReply may contact you about your request. No spam. See our <a href="/privacy.html">privacy policy</a>.</p>
+    </form>
+  </div>
+</section>
+
+<section class="demo-cta" id="demo">
+  <div class="wrap">
+    <h2>See it for yourself before you decide anything</h2>
+    <p>Takes about 30 seconds. No commitment, no signup.</p>
+    <a href="sms:+15855029426?body=QUOTE" class="demo-number">
+      <div class="icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z" fill="#0F2436"/></svg>
+      </div>
+      <div>
+        <span class="tag">Text QUOTE to</span>
+        (585) 502-9426
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 WNYReply | Serving Buffalo, Rochester &amp; Syracuse</div>
+    <div>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
