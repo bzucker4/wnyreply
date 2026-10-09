@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wnyreply.com/sitemap.xml
