@@ -13,3 +13,12 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Send the default Netlify subdomain to the custom domain so search engines
+# only index one copy. Matches only the production netlify.app host, so
+# deploy previews and branch deploys are unaffected.
+[[redirects]]
+  from = "https://wnyreply.netlify.app/*"
+  to = "https://wnyreply.com/:splat"
+  status = 301
+  force = true
